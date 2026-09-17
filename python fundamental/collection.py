@@ -7,3 +7,9 @@ print(names)
 names.sort()
 print(names)
 names.reverse()
+
+print(names)
+
+names.clear()
+print(names)
+
