@@ -5,7 +5,7 @@ print("value of a ",a )
 for i in range(5):
     print("value of i ",i)
 
-print("------")
+print("----------")
 
 for i in range(10,1,-1):
     print("value of i ",i)
