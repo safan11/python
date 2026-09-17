@@ -1,0 +1,9 @@
+flowchart LR
+    T1[Text Chunk A] --> EMB[Embedding Model]
+    T2[Text Chunk B] --> EMB
+    Q[User Query] --> EMB
+    EMB -- vector A --> VDB[(Vector Index)]
+    EMB -- vector B --> VDB
+    EMB -- query vector --> SIM[Similarity Search - cosine / dot-product]
+    VDB --> SIM
+    SIM --> TOPK[Top-K Nearest Chunks]

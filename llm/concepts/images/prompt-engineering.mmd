@@ -1,0 +1,8 @@
+flowchart LR
+    U[User Question] --> PT[Prompt Template Engine]
+    SYS[(System Instructions)] --> PT
+    CTX[(Few-shot Examples / Context)] --> PT
+    PT --> LLM[LLM API<br/>Ollama / OpenAI / Azure]
+    LLM --> OUT[Raw Model Output]
+    OUT --> PARSE[Output Parser<br/>JSON / Markdown validator]
+    PARSE --> APP[Application Response]

@@ -1,0 +1,17 @@
+flowchart TB
+    subgraph Client
+        A[Your Application]
+    end
+    subgraph Inference Server
+        B[API Layer REST / gRPC]
+        C[Tokenizer]
+        D[Transformer Model - Attention + Feed-Forward layers]
+        E[Detokenizer]
+    end
+
+    A -- "prompt text" --> B
+    B --> C
+    C -- "token ids" --> D
+    D -- "next-token logits (looped)" --> E
+    E -- "generated text" --> B
+    B -- "response" --> A

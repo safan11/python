@@ -1,0 +1,15 @@
+flowchart LR
+    subgraph Host Application
+        USER[User] --> AGENT[LLM Agent / Chat UI]
+        AGENT --> CLIENT[MCP Client]
+    end
+
+    subgraph MCP Servers
+        CLIENT <-- "stdio / HTTP+SSE" --> S1[MCP Server: Database]
+        CLIENT <-- "stdio / HTTP+SSE" --> S2[MCP Server: GitHub]
+        CLIENT <-- "stdio / HTTP+SSE" --> S3[MCP Server: Filesystem]
+    end
+
+    S1 --> DB[(Production DB)]
+    S2 --> GH[(GitHub API)]
+    S3 --> FS[(Local Files)]

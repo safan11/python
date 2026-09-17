@@ -1,0 +1,12 @@
+flowchart LR
+    subgraph Training Pipeline
+        BASE[Pre-trained Base Model] --> TRAIN[Fine-tuning Job - LoRA/QLoRA]
+        DS[(Labeled Dataset - instruction/response pairs)] --> TRAIN
+        TRAIN --> ADAPTER[Fine-tuned Adapter or merged model weights]
+    end
+
+    subgraph Serving
+        ADAPTER --> DEPLOY[Model Server - Ollama / vLLM / TGI]
+        REQ[User Request] --> DEPLOY
+        DEPLOY --> RESP[Specialized Response]
+    end

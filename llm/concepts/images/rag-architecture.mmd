@@ -1,0 +1,15 @@
+flowchart TB
+    subgraph Offline Ingestion
+        D1[Source Docs - PDF/Confluence/Docx] --> CH[Chunking]
+        CH --> EMB1[Embedding Model]
+        EMB1 --> VDB[(Vector DB - FAISS / Chroma / pgvector)]
+    end
+
+    subgraph Online Query
+        Q[User Question] --> EMB2[Embedding Model]
+        EMB2 -- query vector --> VDB
+        VDB -- top-k relevant chunks --> CTX[Context Builder]
+        Q --> CTX
+        CTX --> LLM[LLM - Ollama / GPT / Claude]
+        LLM --> ANS[Answer + Citations]
+    end
